@@ -10,10 +10,10 @@ title = st.text_input('Name on Smoothie :')
 st.write('The name on your Smoothie will be : ', title)
 
 session = st.connection("snowflake").session()
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FrUIT_NAME'))
-#st.dataframe(data=my_dataframe, use_container_width=True)
-ingredients_list = st.multiselect(
-'Choose up to 5 ingredients:',my_dataframe)
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FrUIT_NAME'),col('SEARCH_ON'))
+st.dataframe(data=my_dataframe, use_container_width=True)
+st.stop()
+ingredients_list = st.multiselect('Choose up to 5 ingredients:',my_dataframe)
 
 if ingredients_list:
 
